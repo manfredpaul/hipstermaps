@@ -1,0 +1,14 @@
+version: '2'
+services:
+    hipstermaps-app:
+        image: hipstermaps
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://hipstermaps-postgresql:5432/hipstermaps
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    hipstermaps-postgresql:
+        extends:
+            file: postgresql.yml
+            service: hipstermaps-postgresql
