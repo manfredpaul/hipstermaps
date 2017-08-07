@@ -1,0 +1,23 @@
+{
+    "hipstermapsApp": {
+        "spatialevent" : {
+            "home": {
+                "title": "Spatialevents",
+                "createLabel": "Créer un nouveau Spatialevent",
+                "createOrEditLabel": "Créer ou éditer un Spatialevent"
+            },
+            "created": "Un nouveau Spatialevent a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Spatialevent avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Spatialevent avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Spatialevent {{ id }} ?"
+            },
+            "detail": {
+                "title": "Spatialevent"
+            },
+            "title": "Title",
+            "date": "Date",
+            "location": "Location"
+        }
+    }
+}

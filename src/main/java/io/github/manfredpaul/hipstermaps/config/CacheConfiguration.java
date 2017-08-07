@@ -40,6 +40,7 @@ public class CacheConfiguration {
             cm.createCache(io.github.manfredpaul.hipstermaps.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.manfredpaul.hipstermaps.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.manfredpaul.hipstermaps.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(io.github.manfredpaul.hipstermaps.domain.Spatialevent.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

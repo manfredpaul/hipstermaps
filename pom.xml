@@ -251,6 +251,11 @@
             <artifactId>liquibase-core</artifactId>
         </dependency>
         <dependency>
+          <groupId>com.github.lonnyj</groupId>
+          <artifactId>liquibase-spatial</artifactId>
+          <version>1.2.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
         </dependency>

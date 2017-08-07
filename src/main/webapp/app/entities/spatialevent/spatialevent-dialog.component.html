@@ -1,0 +1,55 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="mySpatialeventLabel" jhiTranslate="hipstermapsApp.spatialevent.home.createOrEditLabel">Create or edit a Spatialevent</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!spatialevent.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="spatialevent.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="hipstermapsApp.spatialevent.title" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                [(ngModel)]="spatialevent.title"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="hipstermapsApp.spatialevent.date" for="field_date">Date</label>
+            <div class="d-flex">
+                <input id="field_date" type="datetime-local" class="form-control" name="date" [(ngModel)]="spatialevent.date"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="hipstermapsApp.spatialevent.location" for="field_location">Location</label>
+            <div>
+                <div *ngIf="spatialevent.location" class="form-text text-danger clearfix">
+                    <a class="pull-left" (click)="openFile(spatialevent.locationContentType, spatialevent.location)" jhiTranslate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{spatialevent.locationContentType}}, {{byteSize(spatialevent.location)}}</span>
+                    <button type="button" (click)="spatialevent.location=null;spatialevent.locationContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" (change)="setFileData($event, spatialevent, 'location', false)" jhiTranslate="entity.action.addblob"/>
+            </div>
+            <input type="hidden" class="form-control" name="location" id="field_location"
+                [(ngModel)]="spatialevent.location"  />
+            <input type="hidden" class="form-control" name="locationContentType" id="field_locationContentType"
+                [(ngModel)]="spatialevent.locationContentType" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

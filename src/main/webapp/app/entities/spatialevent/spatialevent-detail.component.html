@@ -1,0 +1,36 @@
+
+<div *ngIf="spatialevent">
+    <h2><span jhiTranslate="hipstermapsApp.spatialevent.detail.title">Spatialevent</span> {{spatialevent.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="hipstermapsApp.spatialevent.title">Title</span></dt>
+        <dd>
+            <span>{{spatialevent.title}}</span>
+        </dd>
+        <dt><span jhiTranslate="hipstermapsApp.spatialevent.date">Date</span></dt>
+        <dd>
+            <span>{{spatialevent.date | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="hipstermapsApp.spatialevent.location">Location</span></dt>
+        <dd>
+            <div *ngIf="spatialevent.location">
+                <a (click)="openFile(spatialevent.locationContentType, spatialevent.location)" jhiTranslate="entity.action.open">open</a>
+                {{spatialevent.locationContentType}}, {{byteSize(spatialevent.location)}}
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'spatialevent/'+ spatialevent.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

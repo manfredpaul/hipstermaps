@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:spatial="http://www.liquibase.org/xml/ns/dbchangelog-ext/liquibase-spatial"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added geom Spatialevent.
+    -->
+    <changeSet id="20170807171800-1" author="jhipster">
+        <preConditions>
+            <spatial:spatialSupported />
+        </preConditions>
+        <createTable tableName="spatialevent">
+            <column name="geom" type="GEOMETRY(Point, 4326)">
+               <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20170807171800-2" author="jhipster">
+       <preConditions>
+          <not>
+             <spatial:spatialIndexExists tableName="spatialevent" columnNames="geom" />
+          </not>
+       </preConditions>
+       <spatial:createSpatialIndex tableName="spatialevent" indexName="geom_idx" geometryType="Geometry" srid="4326">
+          <column name="geom" />
+       </spatial:createSpatialIndex>
+    </changeSet>
+</databaseChangeLog>

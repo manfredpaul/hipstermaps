@@ -1,0 +1,63 @@
+<div>
+    <h2>
+        <span jhiTranslate="hipstermapsApp.spatialevent.home.title">Spatialevents</span>
+        <button class="btn btn-primary float-right jh-create-entity create-spatialevent" [routerLink]="['/', { outlets: { popup: ['spatialevent-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="hipstermapsApp.spatialevent.home.createLabel">
+            Create new Spatialevent
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="spatialevents">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="hipstermapsApp.spatialevent.title">Title</span></th>
+            <th><span jhiTranslate="hipstermapsApp.spatialevent.date">Date</span></th>
+            <th><span jhiTranslate="hipstermapsApp.spatialevent.location">Location</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let spatialevent of spatialevents ;trackBy: trackId">
+                <td><a [routerLink]="['../spatialevent', spatialevent.id ]">{{spatialevent.id}}</a></td>
+                <td>{{spatialevent.title}}</td>
+                <td>{{spatialevent.date | date:'medium'}}</td>
+                <td>
+                    <a *ngIf="spatialevent.location" (click)="openFile(spatialevent.locationContentType, spatialevent.location)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="spatialevent.location">{{spatialevent.locationContentType}}, {{byteSize(spatialevent.location)}}</span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../spatialevent', spatialevent.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'spatialevent/'+ spatialevent.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'spatialevent/'+ spatialevent.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
