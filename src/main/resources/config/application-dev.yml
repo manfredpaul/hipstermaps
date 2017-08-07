@@ -30,7 +30,7 @@ spring:
         username: hipstermaps
         password:
     jpa:
-        database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
+        database-platform: io.github.manfredpaul.hipstermaps.domain.util.FixedPostgisPG82Dialect
         database: POSTGRESQL
         show-sql: true
         properties:

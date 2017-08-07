@@ -1,5 +1,6 @@
 package io.github.manfredpaul.hipstermaps.config;
 
+import com.bedatadriven.jackson.datatype.jts.JtsModule;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
 
@@ -24,4 +25,7 @@ public class JacksonConfiguration {
     public AfterburnerModule afterburnerModule() {
         return new AfterburnerModule();
     }
+
+    @Bean
+    public JtsModule jtsModule() { return new JtsModule(); }
 }
